@@ -1,288 +1,229 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>たまならべ攻略まとめ</title>
-  <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    body {
-      min-height: 100vh;
-      font-family: "Hiragino Sans", "Yu Gothic", sans-serif;
-      background:
-        linear-gradient(180deg, #0f172a 0%, #111827 45%, #0b1220 100%);
-      color: #fff;
-      padding: 24px;
-    }
+<title>たまならべ攻略wiki</title>
 
-    .container {
-      max-width: 900px;
-      margin: 0 auto;
-    }
+<style>
 
-    .hero {
-      background: linear-gradient(135deg, #1d4ed8, #2563eb, #0ea5e9);
-      border: 2px solid rgba(255,255,255,0.15);
-      border-radius: 24px;
-      padding: 28px 24px;
-      box-shadow: 0 20px 50px rgba(0,0,0,0.35);
-      margin-bottom: 22px;
-      position: relative;
-      overflow: hidden;
-    }
+*{
+box-sizing:border-box;
+margin:0;
+padding:0;
+}
 
-    .hero::before {
-      content: "";
-      position: absolute;
-      inset: -40% auto auto -10%;
-      width: 260px;
-      height: 260px;
-      background: rgba(255,255,255,0.08);
-      border-radius: 50%;
-      filter: blur(8px);
-    }
+body{
+font-family:"Hiragino Sans","Yu Gothic",sans-serif;
+background:linear-gradient(180deg,#0f172a,#111827);
+color:white;
+min-height:100vh;
+}
 
-    .badge {
-      display: inline-block;
-      background: #facc15;
-      color: #111827;
-      font-size: 12px;
-      font-weight: 900;
-      padding: 6px 10px;
-      border-radius: 999px;
-      margin-bottom: 12px;
-    }
+/* ---------- ヘッダー ---------- */
 
-    .game-icon {
-      width: 120px;
-      height: 120px;
-      object-fit: cover;
-      border-radius: 24px;
-      display: block;
-      margin-bottom: 16px;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.4);
-      position: relative;
-      z-index: 1;
-    }
+.header{
+text-align:center;
+padding:40px 20px;
+}
 
-    h1 {
-      font-size: clamp(30px, 6vw, 52px);
-      line-height: 1.1;
-      margin-bottom: 10px;
-      position: relative;
-      z-index: 1;
-    }
+.icon{
+width:120px;
+border-radius:26px;
+box-shadow:
+0 10px 30px rgba(0,0,0,0.6),
+0 0 15px rgba(255,255,255,0.2);
+margin-bottom:20px;
+}
 
-    .sub {
-      font-size: 15px;
-      color: rgba(255,255,255,0.92);
-      position: relative;
-      z-index: 1;
-    }
+h1{
+font-size:40px;
+margin-bottom:10px;
+}
 
-    .menu {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 16px;
-      margin-top: 22px;
-    }
+.sub{
+opacity:0.8;
+font-size:14px;
+}
 
-    .card {
-      border: 1px solid rgba(255,255,255,0.12);
-      background: rgba(255,255,255,0.05);
-      backdrop-filter: blur(8px);
-      border-radius: 20px;
-      padding: 18px;
-      box-shadow: 0 12px 30px rgba(0,0,0,0.22);
-      transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
-    }
+/* ---------- 攻略メニュー ---------- */
 
-    .card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 18px 36px rgba(0,0,0,0.28);
-      border-color: rgba(255,255,255,0.24);
-    }
+.menu{
+max-width:900px;
+margin:40px auto;
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+gap:20px;
+padding:20px;
+}
 
-    .label {
-      display: inline-block;
-      font-size: 12px;
-      font-weight: 800;
-      color: #93c5fd;
-      margin-bottom: 10px;
-    }
+.card{
+background:rgba(255,255,255,0.05);
+border-radius:18px;
+padding:20px;
+border:1px solid rgba(255,255,255,0.1);
+transition:0.2s;
+}
 
-    .card h2 {
-      font-size: 22px;
-      line-height: 1.3;
-      margin-bottom: 10px;
-    }
+.card:hover{
+transform:translateY(-4px);
+}
 
-    .card p {
-      color: rgba(255,255,255,0.78);
-      font-size: 14px;
-      line-height: 1.6;
-      margin-bottom: 14px;
-      min-height: 66px;
-    }
+.card h2{
+font-size:20px;
+margin-bottom:10px;
+}
 
-    .open-btn {
-      width: 100%;
-      border: none;
-      border-radius: 14px;
-      padding: 13px 14px;
-      font-size: 15px;
-      font-weight: 800;
-      color: #fff;
-      background: linear-gradient(135deg, #22c55e, #16a34a);
-      cursor: pointer;
-      transition: transform 0.15s ease, filter 0.15s ease;
-    }
+.card p{
+font-size:14px;
+opacity:0.8;
+margin-bottom:15px;
+}
 
-    .open-btn:hover {
-      transform: scale(1.02);
-      filter: brightness(1.08);
-    }
+button{
+width:100%;
+padding:12px;
+border-radius:12px;
+border:none;
+background:#22c55e;
+color:white;
+font-weight:bold;
+cursor:pointer;
+}
 
-    .result {
-      margin-top: 26px;
-      min-height: 170px;
-      border-radius: 24px;
-      border: 1px solid rgba(255,255,255,0.12);
-      background: rgba(255,255,255,0.05);
-      box-shadow: 0 16px 35px rgba(0,0,0,0.22);
-      padding: 26px 22px;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-    }
+/* ---------- 切り替え画面 ---------- */
 
-    .result-title {
-      font-size: 13px;
-      letter-spacing: 0.1em;
-      color: #93c5fd;
-      margin-bottom: 14px;
-      font-weight: 800;
-    }
+#trapScreen{
 
-    #message {
-      font-size: clamp(28px, 7vw, 70px);
-      font-weight: 900;
-      line-height: 1.2;
-      word-break: keep-all;
-      min-height: 1.2em;
-      text-shadow: 0 0 18px rgba(255,255,255,0.12);
-    }
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
 
-    .final {
-      animation: boom 0.45s ease;
-      color: #f87171;
-    }
+background:#020617;
 
-    @keyframes boom {
-      0% {
-        transform: scale(0.6);
-        opacity: 0;
-      }
-      70% {
-        transform: scale(1.1);
-        opacity: 1;
-      }
-      100% {
-        transform: scale(1);
-      }
-    }
+display:flex;
+justify-content:center;
+align-items:center;
+flex-direction:column;
 
-    .footer-note {
-      margin-top: 14px;
-      text-align: center;
-      font-size: 12px;
-      color: rgba(255,255,255,0.45);
-    }
-  </style>
+font-size:50px;
+font-weight:bold;
+
+visibility:hidden;
+}
+
+#trapText{
+font-size:clamp(40px,8vw,90px);
+}
+
+</style>
 </head>
+
 <body>
-  <div class="container">
-    <section class="hero">
-      <div class="badge">最強攻略まとめ</div>
-      <h1>たまならべ<br>完全攻略サイト</h1>
-      <p class="sub">初心者向けの定番情報から禁断の裏技まで、知りたい情報を最速チェック！</p>
-    </section>
 
-    <section class="menu">
-      <div class="card">
-        <div class="label">URAWAZA</div>
-        <h2>コイン1000枚の裏技</h2>
-        <p>最短で大量コインを集めると噂の方法を紹介。序盤から一気に差をつけろ。</p>
-        <button class="open-btn" data-topic="coin">見る</button>
-      </div>
 
-      <div class="card">
-        <div class="label">STAGE DATA</div>
-        <h2>ステージ情報</h2>
-        <p>各ステージの傾向や注意ポイントをまとめて確認。詰まりやすい場面も解決。</p>
-        <button class="open-btn" data-topic="stage">見る</button>
-      </div>
+<!-- 攻略画面 -->
 
-      <div class="card">
-        <div class="label">SECRET</div>
-        <h2>課金を無料にする方法</h2>
-        <p>誰もが気になる禁断のテーマ。知らないと損するかもしれない秘密とは……？</p>
-        <button class="open-btn" data-topic="free">見る</button>
-      </div>
+<div id="main">
 
-      <div class="card">
-        <div class="label">NO ADS</div>
-        <h2>広告を消すには</h2>
-        <p>広告が気になる人向けに、快適に遊ぶ方法を徹底解説。集中してプレイしたい人必見。</p>
-        <button class="open-btn" data-topic="ads">見る</button>
-      </div>
-    </section>
+<div class="header">
 
-    <section class="result">
-      <div class="result-title">攻略情報</div>
-      <div id="message">ボタンを押してチェック</div>
-    </section>
+<img src="icon.png" class="icon">
 
-    <div class="footer-note">※ 情報は自己責任でご確認ください</div>
-  </div>
+<h1>たまならべ攻略wiki</h1>
 
-  <script>
-    const buttons = document.querySelectorAll('.open-btn');
-    const message = document.getElementById('message');
-    const finalText = 'こんなのに頼るな';
-    let timer = null;
+<div class="sub">
+最強攻略・裏技・最新情報まとめ
+</div>
 
-    function showTrapMessage() {
-      if (timer) clearInterval(timer);
+</div>
 
-      message.classList.remove('final');
-      message.textContent = '';
 
-      let index = 0;
-      timer = setInterval(() => {
-        message.textContent += finalText[index];
-        index++;
+<div class="menu">
 
-        if (index >= finalText.length) {
-          clearInterval(timer);
-          setTimeout(() => {
-            message.textContent = finalText;
-            message.classList.add('final');
-          }, 350);
-        }
-      }, 170);
-    }
+<div class="card">
+<h2>コイン1000枚の裏技</h2>
+<p>序盤から一気にコインを稼ぐ裏技を紹介。</p>
+<button onclick="openTrap()">見る</button>
+</div>
 
-    buttons.forEach(button => {
-      button.addEventListener('click', showTrapMessage);
-    });
-  </script>
+<div class="card">
+<h2>ステージ情報</h2>
+<p>各ステージの攻略ポイントを徹底解説。</p>
+<button onclick="openTrap()">見る</button>
+</div>
+
+<div class="card">
+<h2>課金を無料にする方法</h2>
+<p>誰も知らない禁断のテクニック。</p>
+<button onclick="openTrap()">見る</button>
+</div>
+
+<div class="card">
+<h2>広告を消すには</h2>
+<p>快適にプレイするための方法。</p>
+<button onclick="openTrap()">見る</button>
+</div>
+
+</div>
+
+</div>
+
+
+
+<!-- 罠画面 -->
+
+<div id="trapScreen">
+
+<div id="trapText"></div>
+
+</div>
+
+
+
+<script>
+
+function openTrap(){
+
+document.getElementById("main").style.display="none"
+
+const screen=document.getElementById("trapScreen")
+const text=document.getElementById("trapText")
+
+screen.style.visibility="visible"
+
+const msg="こんなのに頼るな"
+
+let i=0
+
+text.innerHTML=""
+
+let timer=setInterval(()=>{
+
+text.innerHTML+=msg[i]
+
+i++
+
+if(i>=msg.length){
+
+clearInterval(timer)
+
+setTimeout(()=>{
+
+text.innerHTML=msg
+
+},300)
+
+}
+
+},120)
+
+}
+
+</script>
+
 </body>
 </html>
