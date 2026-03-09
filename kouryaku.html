@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>たまならべ攻略まとめ</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      min-height: 100vh;
+      font-family: "Hiragino Sans", "Yu Gothic", sans-serif;
+      background:
+        linear-gradient(180deg, #0f172a 0%, #111827 45%, #0b1220 100%);
+      color: #fff;
+      padding: 24px;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .hero {
+      background: linear-gradient(135deg, #1d4ed8, #2563eb, #0ea5e9);
+      border: 2px solid rgba(255,255,255,0.15);
+      border-radius: 24px;
+      padding: 28px 24px;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.35);
+      margin-bottom: 22px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: -40% auto auto -10%;
+      width: 260px;
+      height: 260px;
+      background: rgba(255,255,255,0.08);
+      border-radius: 50%;
+      filter: blur(8px);
+    }
+
+    .badge {
+      display: inline-block;
+      background: #facc15;
+      color: #111827;
+      font-size: 12px;
+      font-weight: 900;
+      padding: 6px 10px;
+      border-radius: 999px;
+      margin-bottom: 12px;
+    }
+
+    h1 {
+      font-size: clamp(30px, 6vw, 52px);
+      line-height: 1.1;
+      margin-bottom: 10px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .sub {
+      font-size: 15px;
+      color: rgba(255,255,255,0.92);
+      position: relative;
+      z-index: 1;
+    }
+
+    .menu {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+      margin-top: 22px;
+    }
+
+    .card {
+      border: 1px solid rgba(255,255,255,0.12);
+      background: rgba(255,255,255,0.05);
+      backdrop-filter: blur(8px);
+      border-radius: 20px;
+      padding: 18px;
+      box-shadow: 0 12px 30px rgba(0,0,0,0.22);
+      transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 18px 36px rgba(0,0,0,0.28);
+      border-color: rgba(255,255,255,0.24);
+    }
+
+    .label {
+      display: inline-block;
+      font-size: 12px;
+      font-weight: 800;
+      color: #93c5fd;
+      margin-bottom: 10px;
+    }
+
+    .card h2 {
+      font-size: 22px;
+      line-height: 1.3;
+      margin-bottom: 10px;
+    }
+
+    .card p {
+      color: rgba(255,255,255,0.78);
+      font-size: 14px;
+      line-height: 1.6;
+      margin-bottom: 14px;
+      min-height: 66px;
+    }
+
+    .open-btn {
+      width: 100%;
+      border: none;
+      border-radius: 14px;
+      padding: 13px 14px;
+      font-size: 15px;
+      font-weight: 800;
+      color: #fff;
+      background: linear-gradient(135deg, #22c55e, #16a34a);
+      cursor: pointer;
+      transition: transform 0.15s ease, filter 0.15s ease;
+    }
+
+    .open-btn:hover {
+      transform: scale(1.02);
+      filter: brightness(1.08);
+    }
+
+    .result {
+      margin-top: 26px;
+      min-height: 170px;
+      border-radius: 24px;
+      border: 1px solid rgba(255,255,255,0.12);
+      background: rgba(255,255,255,0.05);
+      box-shadow: 0 16px 35px rgba(0,0,0,0.22);
+      padding: 26px 22px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+    }
+
+    .result-title {
+      font-size: 13px;
+      letter-spacing: 0.1em;
+      color: #93c5fd;
+      margin-bottom: 14px;
+      font-weight: 800;
+    }
+
+    #message {
+      font-size: clamp(28px, 7vw, 70px);
+      font-weight: 900;
+      line-height: 1.2;
+      word-break: keep-all;
+      min-height: 1.2em;
+      text-shadow: 0 0 18px rgba(255,255,255,0.12);
+    }
+
+    .final {
+      animation: boom 0.45s ease;
+      color: #f87171;
+    }
+
+    @keyframes boom {
+      0% {
+        transform: scale(0.6);
+        opacity: 0;
+      }
+      70% {
+        transform: scale(1.1);
+        opacity: 1;
+      }
+      100% {
+        transform: scale(1);
+      }
+    }
+
+    .footer-note {
+      margin-top: 14px;
+      text-align: center;
+      font-size: 12px;
+      color: rgba(255,255,255,0.45);
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <section class="hero">
+      <div class="badge">最強攻略まとめ</div>
+      <h1>たまならべ<br>完全攻略サイト</h1>
+      <p class="sub">初心者向けの定番情報から禁断の裏技まで、知りたい情報を最速チェック！</p>
+    </section>
+
+    <section class="menu">
+      <div class="card">
+        <div class="label">URAWAZA</div>
+        <h2>コイン1000枚の裏技</h2>
+        <p>最短で大量コインを集めると噂の方法を紹介。序盤から一気に差をつけろ。</p>
+        <button class="open-btn" data-topic="coin">見る</button>
+      </div>
+
+      <div class="card">
+        <div class="label">STAGE DATA</div>
+        <h2>ステージ情報</h2>
+        <p>各ステージの傾向や注意ポイントをまとめて確認。詰まりやすい場面も解決。</p>
+        <button class="open-btn" data-topic="stage">見る</button>
+      </div>
+
+      <div class="card">
+        <div class="label">SECRET</div>
+        <h2>課金を無料にする方法</h2>
+        <p>誰もが気になる禁断のテーマ。知らないと損するかもしれない秘密とは……？</p>
+        <button class="open-btn" data-topic="free">見る</button>
+      </div>
+
+      <div class="card">
+        <div class="label">NO ADS</div>
+        <h2>広告を消すには</h2>
+        <p>広告が気になる人向けに、快適に遊ぶ方法を徹底解説。集中してプレイしたい人必見。</p>
+        <button class="open-btn" data-topic="ads">見る</button>
+      </div>
+    </section>
+
+    <section class="result">
+      <div class="result-title">攻略情報</div>
+      <div id="message">ボタンを押してチェック</div>
+    </section>
+
+    <div class="footer-note">※ 情報は自己責任でご確認ください</div>
+  </div>
+
+  <script>
+    const buttons = document.querySelectorAll('.open-btn');
+    const message = document.getElementById('message');
+    const finalText = 'こんなのに頼るな';
+    let timer = null;
+
+    function showTrapMessage() {
+      if (timer) clearInterval(timer);
+
+      message.classList.remove('final');
+      message.textContent = '';
+
+      let index = 0;
+      timer = setInterval(() => {
+        message.textContent += finalText[index];
+        index++;
+
+        if (index >= finalText.length) {
+          clearInterval(timer);
+          setTimeout(() => {
+            message.textContent = finalText;
+            message.classList.add('final');
+          }, 350);
+        }
+      }, 170);
+    }
+
+    buttons.forEach(button => {
+      button.addEventListener('click', showTrapMessage);
+    });
+  </script>
+</body>
+</html>
