@@ -1,11 +1,7 @@
 {
   "何見てんのよ": "これはヒント一覧よ！プレイヤーが見ていいものじゃないわよ！あっち行きなさい！",
   "forceHints": [
-    "{sprite:oko}",
-    "{sprite:emiko}",
-    "{sprite:aori}",
-    "{sprite:oogiri2}",
-    "{sprite:oogiri3}"
+    "テストは以上です！引き続きお楽しみください！",
     
   ],
   "maintenance_flag": 1,
