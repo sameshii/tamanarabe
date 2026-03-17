@@ -1,7 +1,7 @@
 {
   "何見てんのよ": "これはヒント一覧よ！プレイヤーが見ていいものじゃないわよ！あっち行きなさい！",
   "forceHints": [
-    "<size=600%>ざっこw</size>"
+    "<color=#FF4040><size=800%>ざっこw</size></color>"
   ],
   "maintenance_flag": 1,
   "hints": [
