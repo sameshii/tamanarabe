@@ -1,9 +1,12 @@
 {
   "何見てんのよ": "これはヒント一覧よ！プレイヤーが見ていいものじゃないわよ！あっち行きなさい！",
   "forceHints": [
-    "【こんばんは】新機能テストです、皆さんには表示されません！",   
-    "{sprite:oogiri}",
-    "{sprite:0}"
+    "{sprite:oko}",
+    "{sprite:emiko}",
+    "{sprite:aori}",
+    "{sprite:oogiri2}",
+    "{sprite:oogiri3}"
+    
   ],
   "maintenance_flag": 1,
   "hints": [
