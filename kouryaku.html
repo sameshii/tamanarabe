@@ -107,15 +107,21 @@ button{
   flex-direction:column;
   visibility:hidden;
   overflow:hidden;
+  padding:20px;
 }
 
 /* 爆発前の文字 */
 #trapText{
-  font-size:clamp(40px,8vw,90px);
+  font-size:clamp(28px,7vw,90px);
   font-weight:900;
-  letter-spacing:0.08em;
+  letter-spacing:0.04em;
   text-align:center;
   z-index:2;
+  max-width:92vw;
+  line-height:1.2;
+  word-break:keep-all;
+  overflow-wrap:break-word;
+  padding:0 16px;
 }
 
 /* 爆発エフェクト開始後 */
@@ -147,7 +153,7 @@ button{
 }
 
 .boom-ring.active{
-  animation: ringBoom 0.7s ease-out forwards;
+  animation:ringBoom 0.7s ease-out forwards;
 }
 
 /* パーティクル */
@@ -162,7 +168,7 @@ button{
 }
 
 .particle.active{
-  animation: particleFly 0.9s ease-out forwards;
+  animation:particleFly 0.9s ease-out forwards;
 }
 
 /* ---------- アニメーション ---------- */
@@ -267,19 +273,74 @@ button{
     opacity:0;
   }
 }
+
+/* ---------- スマホ用調整 ---------- */
+
+@media (max-width: 600px){
+  .header{
+    padding:28px 16px;
+  }
+
+  .icon{
+    width:96px;
+  }
+
+  h1{
+    font-size:30px;
+  }
+
+  .sub{
+    font-size:13px;
+  }
+
+  .menu{
+    padding:16px;
+    gap:16px;
+  }
+
+  #trapText{
+    font-size:clamp(24px,8vw,48px);
+    letter-spacing:0.02em;
+    max-width:95vw;
+    line-height:1.25;
+    padding:0 10px;
+  }
+
+  #trapText.explode{
+    animation:
+      explodeScaleMobile 0.45s ease-out forwards,
+      violentShakeMobile 0.08s linear infinite,
+      rainbowText 0.5s linear infinite,
+      glowFlash 0.35s ease-in-out infinite;
+  }
+}
+
+@keyframes explodeScaleMobile{
+  0%{ transform:scale(1); }
+  35%{ transform:scale(1.45); }
+  55%{ transform:scale(1.2); }
+  75%{ transform:scale(1.35); }
+  100%{ transform:scale(1.28); }
+}
+
+@keyframes violentShakeMobile{
+  0%   { transform:translate(0,0) scale(1.28) rotate(0deg); }
+  20%  { transform:translate(-3px,2px) scale(1.28) rotate(-1deg); }
+  40%  { transform:translate(3px,-2px) scale(1.28) rotate(1deg); }
+  60%  { transform:translate(-2px,-2px) scale(1.28) rotate(-0.8deg); }
+  80%  { transform:translate(2px,2px) scale(1.28) rotate(0.8deg); }
+  100% { transform:translate(0,0) scale(1.28) rotate(0deg); }
+}
 </style>
 </head>
 
 <body>
 
-<!-- 攻略画面 -->
 <div id="main">
   <div class="header">
     <img src="icon.PNG" class="icon">
     <h1>たまならべ攻略wiki</h1>
-    <div class="sub">
-      最強攻略・裏技・最新情報まとめ
-    </div>
+    <div class="sub">最強攻略・裏技・最新情報まとめ</div>
   </div>
 
   <div class="menu">
@@ -309,7 +370,6 @@ button{
   </div>
 </div>
 
-<!-- 罠画面 -->
 <div id="trapScreen">
   <div id="trapText"></div>
 </div>
@@ -329,6 +389,11 @@ function openTrap(){
   text.classList.remove("explode");
   screen.classList.remove("flash");
 
+  const oldRings = document.querySelectorAll(".boom-ring");
+  const oldParticles = document.querySelectorAll(".particle");
+  oldRings.forEach(el => el.remove());
+  oldParticles.forEach(el => el.remove());
+
   let timer = setInterval(() => {
     text.innerHTML += msg[i];
     i++;
@@ -338,9 +403,7 @@ function openTrap(){
 
       setTimeout(() => {
         text.innerHTML = msg;
-
         explodeEffect();
-
       }, 300);
     }
   }, 120);
@@ -387,8 +450,10 @@ function openTrap(){
       p.style.top = cy + "px";
       p.style.setProperty("--x", x);
       p.style.setProperty("--y", y);
-      p.style.background = `hsl(${Math.random() * 360} 100% 60%)`;
-      p.style.boxShadow = `0 0 12px hsl(${Math.random() * 360} 100% 60%)`;
+
+      const hue = Math.random() * 360;
+      p.style.background = `hsl(${hue} 100% 60%)`;
+      p.style.boxShadow = `0 0 12px hsl(${hue} 100% 60%)`;
 
       screen.appendChild(p);
 
