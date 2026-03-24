@@ -4,7 +4,12 @@
     ""
   ],
   "maintenance_flag":1,
-  "minimum_required_version": "1.1.15"
+  "unlock_names": [
+    { "name": "解放しろAB" }
+  ]
+  "minimum_required_version": 1.1.15,
+  
+  
   "hints": [
     "【ヒント】ヒントはリアルタイムで随時更新中です",
     "【ヒント】ヒント公募フォームでヒントを投稿したら最短約10分で実際のゲーム内に追加されます",
